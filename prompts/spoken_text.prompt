@@ -1,0 +1,63 @@
+---
+model: vertexai/gemini-1.5-flash
+config:
+  temperature: 0.4
+  topK: 32
+  maxOutputTokens: 8192
+  topP: 0.95
+tools: []
+input:
+    schema:
+        writtenText: string
+---
+
+{{role "user"}}
+Prosím převěď následující text tak, aby se dal snadno vyslovit. Mimo jiné, následuj tyto pravidla:
+===PRAVIDLA:===
+# Vzorečky piš tak, aby se daly přečíst a vyslovit.
+===Příklad:===
+F = m * a
+===Výsledek:===
+Vektor síly se rovná hmotnosti tělesa vynásobenou vektorem zrychlení.
+===Příklad:=== 
+g = G * M / r^2
+===Výsledek:===
+Intezita gravitačního pole se rovná gravitační konstata krát hmotnost tělesa děleno vzdáleností tělesa na druhou
+# Používej psané číslovky:
+===Příklad:===
+20. století
+===Výsledek:===
+dvacáté století
+===Příklad:===
+0,00027 N/kg
+===Výsledek:===
+nula celá nula nula nula dvacet sedm newtonů na kilogram
+
+# Místo znaků jako =, / nebo * používej slovní spojení jako "rovná se", "děleno" nebo "krát".
+===Příklad:===
+2 * 3 = 6
+===Výsledek:===
+Dva krát tři se rovná šest
+
+# Místo 1., 2., 3., piš "první", "druhý", "třetí" nebo Za prvé, za druhé, za třetí a podobně, v závislosti na kontextu.
+===Příklad:===
+1. Místo
+===Výsledek:===
+první místo
+
+===Příklad:=== 
+1) Věda a výzkum
+===Výsledek:===
+Za prvé, věda a výzkum
+
+===Příklad:=== 
+Alexandr I.
+===Výsledek:===
+Alexandr první
+
+=== Konec pravidel ===
+Následující text: 
+{{writtenText}}
+
+Převedený text:
+
